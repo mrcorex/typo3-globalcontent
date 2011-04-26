@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'globalcontent'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.CType_pi1">Global content</label>
+			<label index="tt_content.list_type_pi2">Render Content Element</label>
+			<label index="tt_content.tabs.refererinfo">References</label>
+			<label index="tt_content.tx_globalcontent_refererinfo">Reference information</label>
+			<label index="tt_content.tx_globalcontent_refererinfo_header">This content element is being used on the following pages:</label>
+			<label index="tt_content.tx_globalcontent_refererinfo_norecords">There are no references to this content element.</label>
+			<label index="tt_content.tx_globalcontent_refererinfo_disclaimer">Warning! If you hide or delete this content element it will also disappear from these pages.</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

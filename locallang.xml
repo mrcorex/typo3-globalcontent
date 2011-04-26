@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pi_title">Global content</label>
+			<label index="pi_plus_wiz_description">Global content for AU-sites</label>
+		</languageKey>
+	</data>
+	<meta type="array">
+	</meta>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

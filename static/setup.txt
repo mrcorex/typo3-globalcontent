@@ -1,0 +1,25 @@
+urlcheck = PAGE
+urlcheck {
+  typeNum = 9000
+  
+  # ContentfromPID
+  5 < plugin.tx_lfcontentfrompid_pi1
+  
+  # Templavoila
+  10 = USER
+  10.userFunc = tx_templavoila_pi1->main_page
+
+  config {
+   #disableAllHeaderCode = 1
+   #disablePrefixComment = 1
+   #tx_realurl_enable = 0
+   #/test-indhold/global-content/
+  }
+}
+
+
+[globalVar = TSFE:type = 9000]
+  tt_content.text.stdWrap.dataWrap =<!--SC_begin_{field:uid}--><form method=post action="{GPvar:returnUrl}&elementId={field:uid}&returnUrl={GPvar:returnUrl}" style="border:1px solid red;">|<input type="submit" value="V&aelig;lg" /></form><!--SC_end_{field:uid}-->
+  
+  tt_content.header.stdWrap.dataWrap = <!--SC_begin_{field:uid}-->|<!--SC_end_{field:uid}-->
+[end]

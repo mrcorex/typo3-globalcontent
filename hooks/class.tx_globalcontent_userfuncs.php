@@ -52,7 +52,7 @@ class user_ContentFromAU {
 				$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_content','uid='.$params['row']['uid'],$insertArray);
 			}
 			// delete reference in index table @ common
-			$url = "http://aucommon.server5.linkfactory.dk/?eID=lgc&stage=delete&consContId={$params['row']['uid']}&consDomain=".t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+			$url = "http://aucommon.cs.au.dk/?eID=lgc&stage=delete&consContId={$params['row']['uid']}&consDomain=".t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 			$result = t3lib_div::getUrl($url);
 			
 			$urlParams = t3lib_div::explodeUrl2Array($pObj->returnUrl);

@@ -97,7 +97,7 @@ if (!function_exists('user_TCAform_getrefererinfo')) {
 		global $TYPO3_CONF_VARS, $LANG;
 		$LANG->includeLLFile("EXT:globalcontent/locallang_db.xml");	
 		
-		$commonDomain = 'aucommon.dev.linkfactory.dk';
+		$commonDomain = 'aucommon.cs.au.dk';
 		if(isset($TYPO3_CONF_VARS['EXTCONF']['AU']['commonDomain']) && $TYPO3_CONF_VARS['EXTCONF']['AU']['commonDomain'] != ''){
 			$commonDomain  = $TYPO3_CONF_VARS['EXTCONF']['AU']['commonDomain'];
 		}
@@ -105,7 +105,7 @@ if (!function_exists('user_TCAform_getrefererinfo')) {
 		$provDomain = getDomainForPage($PA['row']['pid']);
 		$provContId = $PA['row']['uid'];
 		
-		$serviceUrl = 'http://'.$commonDomain.'?eID=lgc&stage=get&provId='.$provDomain.'&provContId='.$provContId;
+		$serviceUrl = 'http://'.$commonDomain.'/?eID=lgc&stage=get&provId='.$provDomain.'&provContId='.$provContId;
 		
 		$json = t3lib_div::getURL($serviceUrl);
 		$records = json_decode($json, TRUE);

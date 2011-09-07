@@ -130,10 +130,11 @@ class globalcontent{
                         // create content object
 			$cObj->start($record[0], 'tt_content'); 
 		        $parsedContent = $cObj->cObjGetSingle('<tt_content',$lConf);
-			
+		
 			// replace internal links for src and href to external for consumer
-                        $content =  str_replace('src="','src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL'),$parsedContent);
-                        $content = preg_replace('/href="([^(http:)][^"]+)/i','href="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1',$content);
+                        //$content =  str_replace('src="','src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL'),$parsedContent);
+                        $content = preg_replace('/src="([^(https?:)][^"]+)/i','src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $parsedContent);
+                        $content = preg_replace('/href="([^(https?:)][^"]+)/i','href="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $content);
 
                 }
                 print($content);

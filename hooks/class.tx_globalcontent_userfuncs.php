@@ -81,7 +81,7 @@ class user_ContentFromAU {
 						var win = window.open("/typo3/tce_db.php?&data[tt_content]['.$params['row']['uid'].'][tx_globalcontent_orgurl]="+escape(url)+"&vC='.$GLOBALS['BE_USER']->veriCode().'&prErr=1",\'popUpID'.t3lib_div::shortMD5(time()).'\',\'width=1,height=1\');
 						//window.location.href = "tce_db.php?data[tt_content]['.$params['row']['uid'].'][tx_globalcontent_orgurl]="+escape(url)+"&vC='.$GLOBALS['BE_USER']->veriCode().'&prErr=1&redirect='.urlencode($pObj->returnUrl).'";
 						win.close();
-                                                window.open(prox+url+addurl+"type=9000&callback='.urlencode(t3lib_div::getIndpEnv('TYPO3_SITE_URL').substr($pObj->returnUrl,1)).'",\'popUpID'.t3lib_div::shortMD5(time()).'\',\'width=850,height=850,scrollbars=yes\');
+                                                window.open(prox+escape(url+addurl+"type=9000")+"&callback='.urlencode(t3lib_div::getIndpEnv('TYPO3_SITE_URL').substr($pObj->returnUrl,1)).'",\'popUpID'.t3lib_div::shortMD5(time()).'\',\'width=850,height=850,scrollbars=yes\');
                                                 return false;						
 					}
                                         function createCopy(){

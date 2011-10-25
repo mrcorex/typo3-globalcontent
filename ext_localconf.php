@@ -21,4 +21,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_tcemain_processDatamapClass.php:tx_globalcontent_tcemain_processdatamapclass';
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all']['globalcontent'] = 'EXT:' . $_EXTKEY . '/hooks/class.globalcontent.php:&tx_globalcontent_userfunctions->parseContent';
+
+$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][]= 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_cacheProc.php:&tx_globalcontent_cacheProc->clearCache';
 ?>

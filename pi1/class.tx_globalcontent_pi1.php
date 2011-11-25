@@ -46,17 +46,18 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 	 * @return	The content that is displayed on the website
 	 */
 	function main($content,$conf)	{
-		//t3lib_div::view_array($this->cObj->data)
+		//t3lib_div::view_array($this->cObj->data)		
 		if(strlen($this->cObj->data['tx_globalcontent_link'])){
 			$content = unserialize(tx_localcache::get($this->prefixId.':'.$this->cObj->data['tx_globalcontent_link']));
 			if(!$content){
 				$content = t3lib_div::getUrl($this->cObj->data['tx_globalcontent_link'].'&no_cache=1');
-				tx_localcache::set($this->prefixId . ':' . $this->cObj->data['tx_globalcontent_link'], serialize($content));
+				tx_localcache::set($this->prefixId . ':' . $this->cObj->data['tx_globalcontent_link'], serialize($content), time() + (12 * 3600));
 			}
 		}
+
 		if($content==false) return;
 		if($content==null){
-			$content = 'Fall back:<br>'.$this->cObj->data['tx_globalcontent'];
+			$content = ':<br>' . $this->cObj->data['tx_globalcontent'];
 		}
 		return $content;
 		return 'Hello World!<HR>

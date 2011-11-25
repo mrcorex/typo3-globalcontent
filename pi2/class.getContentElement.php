@@ -33,6 +33,11 @@ require_once(t3lib_extMgm::extPath('siabscripts').'class.tx_siabscripts_contenth
 require_once('typo3conf/ext/templavoila/pi1/class.tx_templavoila_pi1.php');
 require_once('typo3/sysext/css_styled_content/pi1/class.tx_cssstyledcontent_pi1.php');
 
+
+if(t3lib_extMgm::isLoaded('perfectlightbox')){
+	@include_once(t3lib_extMgm::extPath('perfectlightbox').'class.tx_perfectlightbox.php');
+}
+
 #### PREPARE INSTANCE OF TSFE ####
 $temp_TSFEclassName = t3lib_div::makeInstanceClassName('tslib_fe');
 $TSFE = new $temp_TSFEclassName(
@@ -133,7 +138,8 @@ class globalcontent{
 		
 			// replace internal links for src and href to external for consumer
                         //$content =  str_replace('src="','src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL'),$parsedContent);
-                        $content = preg_replace('/src="([^(http:)][^"]+)/i','src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $parsedContent);
+                        //$content = preg_replace('/src="([^(http:)][^"]+)/i', 'src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $parsedContent);
+     			$content = preg_replace('/src="(fileadmin|uploads|typo3temp|typo3conf)/i', 'src="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $parsedContent);
 
                         $content = preg_replace('/href="([^(http:)][^"]+)/i', 'href="'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'$1', $content);
 

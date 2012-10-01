@@ -122,9 +122,11 @@ class globalcontent{
 			preg_match_all('/\<link (\d+)([^\>]*)\>/',$record[0]['bodytext'],$matches);			
 			if(count($matches[0])){				
 				foreach($matches[0] as $i => $link){					
-					if(strpos($matches[2][$i],'external')===false){						
+					if(strpos($matches[2][$i],'external')===false && strpos($matches[2][$i],'http://')===false){
 						$tmp = t3lib_div::getUrl('http://'.$this->getDomainForPage($matches[1][$i]).'/index.php?id='.$matches[1][$i].'&type=8001');
-						$replace[$matches[0][$i]] = '<link '.$tmp.' '.(str_replace('internal-link','',$matches[2][$i])).'>';
+						if(strpos($tmp,'<head') === false){
+							$replace[$matches[0][$i]] = '<link '.$tmp.' '.(str_replace('internal-link','',$matches[2][$i])).'>';
+						}
 					}
 				}
 				if(count($replace)){

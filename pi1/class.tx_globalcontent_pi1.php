@@ -48,7 +48,8 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 	function main($content,$conf)	{
 		//t3lib_div::view_array($this->cObj->data)		
 		if(strlen($this->cObj->data['tx_globalcontent_link'])){
-			$content = unserialize(tx_localcache::get($this->prefixId.':'.$this->cObj->data['tx_globalcontent_link']));
+			if($_GET['no_cache'] != 1)
+				$content = unserialize(tx_localcache::get($this->prefixId.':'.$this->cObj->data['tx_globalcontent_link']));
 			if(!$content){
 				$content = t3lib_div::getUrl($this->cObj->data['tx_globalcontent_link'].'&no_cache=1');
 				tx_localcache::set($this->prefixId . ':' . $this->cObj->data['tx_globalcontent_link'], serialize($content), time() + (12 * 3600));

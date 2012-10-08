@@ -14,7 +14,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY,"pi2/static/","Render Content Element");
 t3lib_extMgm::addStaticFile($_EXTKEY,'static/global_content/', 'global content');
 
 
-include(t3lib_extMgm::extPath('globalcontent').'hooks/class.tx_globalcontent_userfuncs.php');
+include_once(t3lib_extMgm::extPath('globalcontent').'hooks/class.tx_globalcontent_userfuncs.php');
 
 
 $tempColumnsTTContent = Array (

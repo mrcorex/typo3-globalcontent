@@ -5,6 +5,10 @@
 			<label index="pi_title">Global content</label>
 			<label index="pi_plus_wiz_description">Global content for AU-sites</label>
 		</languageKey>
+		<languageKey index="da" type="array">
+                        <label index="pi_title">Fælles indhold</label>
+                        <label index="pi_plus_wiz_description">Fælles indhold til AU-sites</label>
+                </languageKey>
 	</data>
 	<meta type="array">
 	</meta>

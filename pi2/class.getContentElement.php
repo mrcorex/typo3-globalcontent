@@ -39,7 +39,7 @@ if(t3lib_extMgm::isLoaded('perfectlightbox')){
 }
 
 #### PREPARE INSTANCE OF TSFE ####
-$temp_TSFEclassName = t3lib_div::makeInstanceClassName('tslib_fe');
+$temp_TSFEclassName = t3lib_div::makeInstance('tslib_fe');
 $TSFE = new $temp_TSFEclassName(
 $TYPO3_CONF_VARS,
 t3lib_div::_GP('id'),
@@ -122,10 +122,19 @@ class globalcontent{
 			preg_match_all('/\<link (\d+)([^\>]*)\>/',$record[0]['bodytext'],$matches);			
 			if(count($matches[0])){				
 				foreach($matches[0] as $i => $link){					
-					if(strpos($matches[2][$i],'external')===false && strpos($matches[2][$i],'http://')===false){
+					if(strpos($matches[2][$i],'external')===false){						
 						$tmp = t3lib_div::getUrl('http://'.$this->getDomainForPage($matches[1][$i]).'/index.php?id='.$matches[1][$i].'&type=8001');
-						if(strpos($tmp,'<head') === false){
+						if(strlen(trim($tmp)) && strpos($tmp,'<head') === false){
 							$replace[$matches[0][$i]] = '<link '.$tmp.' '.(str_replace('internal-link','',$matches[2][$i])).'>';
+						} elseif(strlen(trim($tmp))<1){
+							// check for mop
+							$mop = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid,pid,mount_pid','pages','uid='.intval($matches[1][$i]).' AND mount_pid > 0 AND deleted = 0');
+							if($mop[0]['mount_pid'] > 0){
+								$tmp = t3lib_div::getUrl('http://'.$this->getDomainForPage($mop[0]['mount_pid']).'/index.php?id='.$mop[0]['mount_pid'].'&type=8001' . ($_GET['L']>0 ? '&L='.$_GET['L']:''));
+								if(strlen(trim($tmp)) && strpos($tmp,'<head') === false){
+									$replace[$matches[0][$i]] = '<link '.$tmp.' '.(str_replace('internal-link','',$matches[2][$i])).'>';
+								}
+							}
 						}
 					}
 				}

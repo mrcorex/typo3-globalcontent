@@ -14,6 +14,15 @@
 			<label index="tt_content.tx_globalcontent_refererinfo_norecords">There are no references to this content element.</label>
 			<label index="tt_content.tx_globalcontent_refererinfo_disclaimer">Warning! If you hide or delete this content element it will also disappear from these pages.</label>
 		</languageKey>
+               <languageKey index="da" type="array">
+                        <label index="tt_content.CType_pi1">Globalt indhold</label>
+                        <label index="tt_content.list_type_pi2">Generer indholdselement</label>
+                        <label index="tt_content.tabs.refererinfo">Referencer</label>
+                        <label index="tt_content.tx_globalcontent_refererinfo">Reference information</label>
+                        <label index="tt_content.tx_globalcontent_refererinfo_header">Dette indholdselement bliver brugt på følgende sider:</label>
+                        <label index="tt_content.tx_globalcontent_refererinfo_norecords">Der er ingen referencer til dette indholdselement.</label>
+                        <label index="tt_content.tx_globalcontent_refererinfo_disclaimer">Advarsel! Vær opmærksom på at hvis du sletter eller skjuler dette indholdselement vil det også forsvinde fra ovenstående sider.</label>
+                </languageKey>
 	</data>
 	<orig_hash type="array">
 	</orig_hash>

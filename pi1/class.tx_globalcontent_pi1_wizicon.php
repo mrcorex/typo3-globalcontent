@@ -85,12 +85,12 @@ class tx_globalcontent_wizicon {
 	 * @return	array		The LOCAL_LANG array
 	 */
 	function includeLocalLang()    {
-		try {
+		if ( class_exists("\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility") ) {
 			$LOCAL_LANG = \TYPO3\CMS\Core\Utility\GeneralUtility::readLLfile(
 				\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('globalcontent').'locallang.xml',
 				$GLOBALS['LANG']->lang
 			);
-		} catch (Exception $e) {
+		} else {
 			$llFile = t3lib_extMgm::extPath('globalcontent').'locallang.xml';
 			$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
 		}

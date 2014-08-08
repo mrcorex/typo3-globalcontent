@@ -7,7 +7,10 @@ if (TYPO3_MODE=='BE')	{
 }
 
 
-t3lib_div::loadTCA('tt_content');
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA('tt_content');	
+}
+
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi2']='layout,select_key';
 t3lib_extMgm::addPlugin(array('LLL:EXT:globalcontent/locallang_db.xml:tt_content.list_type_pi2', $_EXTKEY.'_pi2'),'list_type');
 t3lib_extMgm::addStaticFile($_EXTKEY,"pi2/static/","Render Content Element");
@@ -55,12 +58,18 @@ $tempColumnsTTContent = Array (
 );
 
 // Load into tt_news
-t3lib_div::loadTCA('tt_content');
+
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA('tt_content');	
+}
 t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent, 1);
 t3lib_extMgm::addToAllTCAtypes("tt_content","--div--;LLL:EXT:globalcontent/locallang_db.xml:tt_content.tabs.refererinfo,tx_globalcontent_refererinfo;;;;1-1-1");
 
 
-t3lib_div::loadTCA('tt_content');
+
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA('tt_content');	
+}
 $TCA['tt_content']['types'][$_EXTKEY.'_pi1']['showitem']='CType;;4;button;1-1-1, header;;3;;2-2-2,tx_globalcontent,tx_globalcontent_link,tx_globalcontent_orgurl';
 t3lib_extMgm::addPlugin(array('LLL:EXT:globalcontent/locallang_db.xml:tt_content.CType_pi1', $_EXTKEY.'_pi1'),'CType');
 

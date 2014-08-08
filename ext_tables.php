@@ -61,8 +61,10 @@ $tempColumnsTTContent = Array (
 
 if (version_compare(TYPO3_branch, '6.1', '<')) {
 	t3lib_div::loadTCA('tt_content');	
+	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent, 1);
+} else {
+	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent);
 }
-t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent, 1);
 t3lib_extMgm::addToAllTCAtypes("tt_content","--div--;LLL:EXT:globalcontent/locallang_db.xml:tt_content.tabs.refererinfo,tx_globalcontent_refererinfo;;;;1-1-1");
 
 

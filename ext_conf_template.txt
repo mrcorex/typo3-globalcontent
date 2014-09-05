@@ -1,0 +1,2 @@
+  # cat=basic; type=options[Passthrough=passthrough, Cached=cached, jQuery=jquery, Varnish=varnish]; label=Fetcher-engine: Choose which engine should be used to get/cache content.
+fetcherEngine = passthrough

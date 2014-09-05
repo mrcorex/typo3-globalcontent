@@ -1,25 +1,27 @@
-urlcheck = PAGE
-urlcheck {
-  typeNum = 9000
-  
-  # ContentfromPID
-  5 < plugin.tx_lfcontentfrompid_pi1
-  
-  # Templavoila
-  10 = USER
-  10.userFunc = tx_templavoila_pi1->main_page
-
+globalContentList < page
+globalContentList {
+  typeNum = 9001
   config {
-   #disableAllHeaderCode = 1
-   #disablePrefixComment = 1
-   #tx_realurl_enable = 0
-   #/test-indhold/global-content/
+    disableAllHeaderCode = 0
+    disablePrefixComment = 1
+    tx_realurl_enable = 0
   }
 }
 
+globalContentSingle = PAGE
+globalContentSingle {
+  typeNum = 9002
+  10 = RECORDS
+  10.tables = tt_content
+  10.source.data = GP:cid
+  config {
+    disableAllHeaderCode = 1
+    disablePrefixComment = 1
+    tx_realurl_enable = 0
+  }
+}
 
-[globalVar = TSFE:type = 9000]
-  tt_content.text.stdWrap.dataWrap =<!--SC_begin_{field:uid}--><form method=post action="{GPvar:returnUrl}&elementId={field:uid}&returnUrl={GPvar:returnUrl}" style="border:1px solid red;">|<input type="submit" value="V&aelig;lg" /></form><!--SC_end_{field:uid}-->
-  
-  tt_content.header.stdWrap.dataWrap = <!--SC_begin_{field:uid}-->|<!--SC_end_{field:uid}-->
-[end]
+[globalVar = TSFE:type = 9001]
+  lib.leftmenu >
+  tt_content.stdWrap.dataWrap = <div style="border: 1px solid red; padding: 10px 10px 10px 10px;">|<form method=post action="{GP:callbackUrl}"><input type="hidden" name="fetchUrl" value="{GP:fetchUrl}"><input type="hidden" name="cid" value="{field:uid}"><input type="hidden" name="elementId" value="{GP:elementId}"><input type="submit" value="V&aelig;lg" /></form></div>
+[global]

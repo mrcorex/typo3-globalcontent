@@ -22,9 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
-
-
 /**
  * Plugin 'Global content' for the 'globalcontent' extension.
  *
@@ -37,40 +34,27 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 	var $scriptRelPath = 'pi1/class.tx_globalcontent_pi1.php';	// Path to this script relative to the extension dir.
 	var $extKey        = 'globalcontent';	// The extension key.
 	var $pi_checkCHash = true;
-	
+
 	/**
-	 * The main method of the PlugIn
+	 * The main method of the PlugIns
 	 *
 	 * @param	string		$content: The PlugIn content
 	 * @param	array		$conf: The PlugIn configuration
 	 * @return	The content that is displayed on the website
 	 */
-	function main($content,$conf)	{
-		//t3lib_div::view_array($this->cObj->data)		
-		if(strlen($this->cObj->data['tx_globalcontent_link'])){
-			if($_GET['no_cache'] != 1)
-				$content = unserialize(tx_localcache::get($this->prefixId.':'.$this->cObj->data['tx_globalcontent_link']));
-			if(!$content){
-				$content = t3lib_div::getUrl($this->cObj->data['tx_globalcontent_link'].'&no_cache=1');
-				tx_localcache::set($this->prefixId . ':' . $this->cObj->data['tx_globalcontent_link'], serialize($content), time() + (12 * 3600));
-			}
+	function main($content, $conf)	{
+		$fetchUrl = "";
+		if (isset($this->cObj->data['tx_globalcontent_link'])) {
+			$fetchUrl = $this->cObj->data['tx_globalcontent_link'];
 		}
 
-		if($content==false) return;
-		if($content==null){
-			$content = ':<br>' . $this->cObj->data['tx_globalcontent'];
-		}
-		return $content;
-		return 'Hello World!<HR>
-			Here is the TypoScript passed to the method:'.
-					t3lib_div::view_array($conf).$content;
+		// Initialize fetcher and get content.
+		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl . "&no_cache=1");
+		return $fetcher->getContent();
 	}
+
 }
-
-
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/globalcontent/pi1/class.tx_globalcontent_pi1.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/globalcontent/pi1/class.tx_globalcontent_pi1.php']);
 }
-
-?>

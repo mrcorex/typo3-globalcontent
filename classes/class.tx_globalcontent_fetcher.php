@@ -103,7 +103,7 @@ class tx_globalcontent_fetcher {
 		$content = $cacheInstance->get($this->cacheKey);
 		if ($content === false) {
 			// Content not found. Get it from url and save to cache.
-			$content = @file_get_contents($this->url);
+			$content = $this->getContentPassthrough();
 			$cacheInstance->set($this->cacheKey, $content, array(), $this->cacheLifetime);
 		}
 

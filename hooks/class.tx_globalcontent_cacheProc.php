@@ -11,7 +11,7 @@ class tx_globalcontent_cacheProc {
 	 * @param array $params
 	 * @param object $pObj
 	 */
-	public function clearCache($params, &$pObj){
+	public function clearCache($params, &$pObj) {
 		$paramUid = $params["uid"];
 
 		$table = isset($params["table"]) ? $params["table"] : "";

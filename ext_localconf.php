@@ -12,6 +12,7 @@ if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['globalc
 	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['globalcontent_cache'] = array();
 }
 
+// Set cache to use string for frontend.
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_hash'])) {
 	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['globalcontent_cache'] = array(
 			'frontend' => 't3lib_cache_frontend_StringFrontend',
@@ -22,3 +23,6 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 
 // Add cache-handler.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][]= 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_cacheProc.php:&tx_globalcontent_cacheProc->clearCache';
+
+// Add tcemain-handler.
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_tcemain.php:tx_globalcontent_tcemain';

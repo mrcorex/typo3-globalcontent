@@ -49,7 +49,7 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 		}
 
 		// Initialize fetcher and get content.
-		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl . "&no_cache=1");
+		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl);
 		return $fetcher->getContent();
 	}
 

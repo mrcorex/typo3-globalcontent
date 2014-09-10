@@ -8,6 +8,8 @@ class tx_globalcontent_fetcher {
 	const extKey = "globalcontent";
 
 	private $url;
+	private $cacheKey;
+	private $cacheLifetime;
 	private $fetcherEngine;
 
 	/**
@@ -18,6 +20,10 @@ class tx_globalcontent_fetcher {
 	public function __construct($url) {
 		global $TYPO3_CONF_VARS;
 		$this->url = $url;
+		$this->cacheKey = md5($this->url);
+
+		// Set cache-lifetime for 12 hours.
+		$this->cacheLifetime = 60 * 60 * 12;
 
 		// Get configuraton for fetcher-engine.
 		$configuration = array();
@@ -69,7 +75,7 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentPassthrough() {
-		return @file_get_contents($this->url);
+		return @file_get_contents($this->url . "&no_cache=1");
 	}
 
 	/**
@@ -78,7 +84,30 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentCached() {
-		return "Not implemented yet.";
+		$cacheIdentifier = tx_globalcontent_fetcher::extKey . "_cache";
+
+		// Initialize TYPO3 cache caching framework.
+		t3lib_cache::initializeCachingFramework();
+		try {
+			$cacheInstance = $GLOBALS['typo3CacheManager']->getCache($cacheIdentifier);
+		} catch (t3lib_cache_exception_NoSuchCache $e) {
+			$cacheInstance = $GLOBALS['typo3CacheFactory']->create(
+					$cacheIdentifier,
+					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['frontend'],
+					array(),
+					array()
+			);
+		}
+
+		// Get content from cache.
+		$content = $cacheInstance->get($this->cacheKey);
+		if ($content === false) {
+			// Content not found. Get it from url and save to cache.
+			$content = @file_get_contents($this->url);
+			$cacheInstance->set($this->cacheKey, $content, array(), $this->cacheLifetime);
+		}
+
+		return $content;
 	}
 
 	/**

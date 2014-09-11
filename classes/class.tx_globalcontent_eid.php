@@ -98,6 +98,7 @@ class tx_globalcontent_eid {
 		}
 		$data = str_replace("\r", "", $data);
 		$data = str_replace("\n", "", $data);
+		$data = addslashes($data);
 
 		print("<script type=\"text/javascript\">");
 		print("window.opener.document.getElementById('test').innerHTML = '" . $data . "';");

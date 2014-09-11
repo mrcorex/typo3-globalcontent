@@ -55,9 +55,7 @@ class tx_globalcontent_eid {
 
 		// Build url.
 		$fetchUrl = $url;
-		if (substr($url, -1) != "/") {
-			$url .= strpos($url, "?") > 0 ? "&" : "?";
-		}
+		$url .= strpos($url, "?") > 0 ? "&" : "?";
 		$url .= "type=" . tx_globalcontent_eid::PAGE_TYPE_LIST;
 		$url .= "&no_cache=1";
 		$url .= "&callbackUrl=" . urlencode($this->getSiteUrl() . "?eID=globalcontent&mode=fetchElement");

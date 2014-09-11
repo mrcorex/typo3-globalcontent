@@ -6,6 +6,15 @@
 class tx_globalcontent_userfuncs {
 
 	const PAGE_TYPE_SINGLE = 9002;
+	private $lang;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		$this->lang = $GLOBALS["LANG"];
+		$this->lang->includeLLFile('EXT:globalcontent/locallang.xml');
+	}
 
 	/**
 	 * Main of user-function.
@@ -15,7 +24,6 @@ class tx_globalcontent_userfuncs {
 	 * @return string
 	 */
 	public function main(&$params, &$pObj) {
-		$GLOBALS["LANG"]->includeLLFile('EXT:globalcontent/locallang.xml');
 
 		// Extract data from row.
 		$row = $params['row'];
@@ -47,7 +55,7 @@ class tx_globalcontent_userfuncs {
 		$fetchers = $this->getListOfFetchers();
 		if (count($fetchers) > 0) {
 			$content .= "<tr><td>";
-			$content .= $GLOBALS["LANG"]->getLL("chooseFetcher");
+			$content .= $this->lang->getLL("chooseFetcher");
 			$content .= ": </td></tr>";
 			$content .= "<tr><td><select name=\"data[" . $table . "][" . $elementId . "][tx_globalcontent_fetcher]\">";
 			foreach ($fetchers as $fetcherAlias => $fetcherName) {
@@ -59,19 +67,19 @@ class tx_globalcontent_userfuncs {
 		}
 
 		$content .= '<tr><td><br>';
-		$content .= $GLOBALS["LANG"]->getLL("enterUrl");
+		$content .= $this->lang->getLL("enterUrl");
 		$content .= ': </td></tr>';
 		$content .= '<tr><td><input type="text" name="data[' . $table . '][' . $elementId . '][tx_globalcontent_orgurl]" id="tx_globalcontent_orgurl" size="60" onfocus="this.select();" value="' . $originalUrl . '"  /></td></tr>';
 		if (strlen(trim($originalUrl)) > 0) {
 			$content .= '<tr><td>';
-			$content .= $GLOBALS["LANG"]->getLL("urlToPreviousPage");
+			$content .= $this->lang->getLL("urlToPreviousPage");
 			$content .= ':</td></tr>';
 			$content .= '<tr><td><a href="' . $originalUrl . '" target="_blank">' . $originalUrl . '</a></td></tr>';
 		}
 		$content .= '<tr><td><br><input type="button" onclick="getUrl();" value="Browse"/>';
 		$content .= '</table>';
 		$content .= '<input type="hidden" name="data[' . $table . '][' . $elementId . '][tx_globalcontent_link]" id="tx_globalcontent_link" value="' . $url . '" /><br>';
-		$content .= $GLOBALS["LANG"]->getLL("preview") . ":";
+		$content .= $this->lang->getLL("preview") . ":";
 		$content .= "<hr>";
 		$content .= '<div id="test" style="padding: 5px 5px 5px 5px;">' . $this->getPreview($url, $originalUrl) . '</div>';
 
@@ -144,11 +152,11 @@ class tx_globalcontent_userfuncs {
 	 */
 	private function getListOfFetchers() {
 		return array(
-			"" => "Global",
-			"passthrough" => "Passthrough",
-			"cached" => "Cached",
-			"jquery" => "jQuery",
-			"varnish" => "Varnish"
+			"" => $this->lang->getLL("fetcherGlobal"),
+			"passthrough" => $this->lang->getLL("fetcherPassthrough"),
+			"cached" => $this->lang->getLL("fetcherCached"),
+			"jquery" => $this->lang->getLL("fetcherjQuery"),
+			"varnish" => $this->lang->getLL("fetcherVarnish")
 		);
 	}
 

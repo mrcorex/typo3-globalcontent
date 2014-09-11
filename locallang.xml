@@ -7,6 +7,11 @@
 			<label index="enterUrl">Enter url</label>
 			<label index="urlToPreviousPage">Url to previous page</label>
 			<label index="preview">Preview</label>
+			<label index="fetcherGlobal">Global - controlled by global configuration</label>
+			<label index="fetcherPassthrough">Passthrough - no caching</label>
+			<label index="fetcherCached">Cached - use caching framework</label>
+			<label index="fetcherjQuery">jQuery - loading with sliding and fading</label>
+			<label index="fetcherVarnish">Varnish - cached controlled by Varnish</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index="pi_title">Globalt indhold</label>
@@ -14,6 +19,11 @@
 			<label index="enterUrl">Indtast url</label>
 			<label index="urlToPreviousPage">Url til forrige side</label>
 			<label index="preview">Forhåndsvisning</label>
+			<label index="fetcherGlobal">Global - styret of global indstillinger</label>
+			<label index="fetcherPassthrough">Passthrough - ingen caching</label>
+			<label index="fetcherCached">Cached - brug caching framework</label>
+			<label index="fetcherjQuery">jQuery - indlæsning med sliding og fading</label>
+			<label index="fetcherVarnish">Varnish - cache styret af Varnish</label>
 		</languageKey>
 	</data>
 	<meta type="array">

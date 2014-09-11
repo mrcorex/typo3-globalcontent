@@ -24,10 +24,6 @@ class tx_globalcontent_userfuncs {
 		$url = $params['row']['tx_globalcontent_link'];
 		$originalUrl = $params['row']['tx_globalcontent_orgurl'];
 		$fetcher = trim($params['row']['tx_globalcontent_fetcher']);
-		if ($fetcher == "") {
-			// Get fetcher from configuration.
-			$fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
-		}
 
 		// Setup form.
         $pObj->additionalCode_pre['iframeElement'] = '
@@ -148,6 +144,7 @@ class tx_globalcontent_userfuncs {
 	 */
 	private function getListOfFetchers() {
 		return array(
+			"" => "Global",
 			"passthrough" => "Passthrough",
 			"cached" => "Cached",
 			"jquery" => "jQuery",

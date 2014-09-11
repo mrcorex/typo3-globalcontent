@@ -15,6 +15,7 @@ globalContentSingle {
   10.tables = tt_content
   10.source.data = GP:cid
   config {
+    additionalHeaders = Access-Control-Allow-Origin: *
     disableAllHeaderCode = 1
     disablePrefixComment = 1
     tx_realurl_enable = 0

@@ -11,8 +11,8 @@ class tx_globalcontent_tcemain {
 	 * @param string $status
 	 * @param string  $table
 	 * @param number $id
-	 * @param array $fieldArray
-	 * @param object $pObj
+	 * @param array &$fieldArray
+	 * @param object &$pObj
 	 * @return void
 	 */
 	public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, &$pObj) {

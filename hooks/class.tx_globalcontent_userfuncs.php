@@ -19,7 +19,7 @@ class tx_globalcontent_userfuncs {
 	/**
 	 * Main of user-function.
 	 * 
-	 * @param array &$param
+	 * @param array &$params
 	 * @param object &$pObj
 	 * @return string
 	 */
@@ -34,7 +34,7 @@ class tx_globalcontent_userfuncs {
 		$fetcher = trim($params['row']['tx_globalcontent_fetcher']);
 
 		// Setup form.
-        $pObj->additionalCode_pre['iframeElement'] = '
+		$pObj->additionalCode_pre['iframeElement'] = '
 			<script type="text/javascript">
 				function getUrl() {
 					var prox = "' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . '?eID=globalcontent&mode=chooseElement";
@@ -106,6 +106,7 @@ class tx_globalcontent_userfuncs {
 	 * Prepare url for preview, convert from old format to new format.
 	 * 
 	 * @param string $url
+	 * @param string $originalUrl
 	 * @return string
 	 */
 	private function prepareUrl($url, $originalUrl) {

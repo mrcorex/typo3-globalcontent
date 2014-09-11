@@ -22,7 +22,7 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 }
 
 // Add cache-handler.
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][]= 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_cacheProc.php:&tx_globalcontent_cacheProc->clearCache';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] = 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_cacheproc.php:&tx_globalcontent_cacheproc->clearCache';
 
 // Add tcemain-handler.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/hooks/class.tx_globalcontent_tcemain.php:tx_globalcontent_tcemain';

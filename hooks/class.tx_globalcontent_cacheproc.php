@@ -3,13 +3,14 @@
 /**
  * Class to clear cache.
  */
-class tx_globalcontent_cacheProc {
+class tx_globalcontent_cacheproc {
 
 	/**
 	 * Clear cache.
 	 * 
 	 * @param array $params
-	 * @param object $pObj
+	 * @param object &$pObj
+	 * @return void
 	 */
 	public function clearCache($params, &$pObj) {
 		$paramUid = $params["uid"];

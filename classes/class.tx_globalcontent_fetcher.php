@@ -12,8 +12,10 @@ class tx_globalcontent_fetcher {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param string $url
+	 * @param string $fetcher Default "".
+	 * @return void
 	 */
 	public function __construct($url, $fetcher = "") {
 		global $TYPO3_CONF_VARS;

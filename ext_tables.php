@@ -4,7 +4,7 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 
-$tempColumnsTTContent = Array (
+$tempColumnsTtContent = Array (
 	'tx_globalcontent_link' => Array(
 		'exclude' => 0,
 		'label' => 'Test',
@@ -41,9 +41,9 @@ $tempColumnsTTContent = Array (
 
 if (version_compare(TYPO3_branch, '6.1', '<')) {
 	t3lib_div::loadTCA('tt_content');	
-	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent, 1);
+	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTtContent, 1);
 } else {
-	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTTContent);
+	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTtContent);
 }
 
 if (version_compare(TYPO3_branch, '6.1', '<')) {
@@ -53,4 +53,4 @@ if (version_compare(TYPO3_branch, '6.1', '<')) {
 t3lib_extMgm::addStaticFile($_EXTKEY, "static/", "Global Content Page types");
 
 $TCA['tt_content']['types'][$_EXTKEY . '_pi1']['showitem'] = 'CType;;4;button;1-1-1, header;;3;;2-2-2,tx_globalcontent,tx_globalcontent_link,tx_globalcontent_orgurl,tx_globalcontent_fetcher';
-t3lib_extMgm::addPlugin(array('LLL:EXT:globalcontent/locallang_db.xml:tt_content.CType_pi1', $_EXTKEY.'_pi1'), 'CType');
+t3lib_extMgm::addPlugin(array('LLL:EXT:globalcontent/locallang_db.xml:tt_content.CType_pi1', $_EXTKEY . '_pi1'), 'CType');

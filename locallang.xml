@@ -3,12 +3,18 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="pi_title">Global content</label>
-			<label index="pi_plus_wiz_description">Global content for AU-sites</label>
+			<label index="chooseFetcher">Choose fetcher</label>
+			<label index="enterUrl">Enter url</label>
+			<label index="urlToPreviousPage">Url to previous page</label>
+			<label index="preview">Preview</label>
 		</languageKey>
-               <languageKey index="da" type="array">
-                        <label index="pi_title">Fælles indhold</label>
-                        <label index="pi_plus_wiz_description">Fælles indhold til AU-sites</label>
-               </languageKey>
+		<languageKey index="da" type="array">
+			<label index="pi_title">Globalt indhold</label>
+			<label index="chooseFetcher">Vælg fetcher</label>
+			<label index="enterUrl">Indtast url</label>
+			<label index="urlToPreviousPage">Url til forrige side</label>
+			<label index="preview">Forhåndsvisning</label>
+		</languageKey>
 	</data>
 	<meta type="array">
 	</meta>

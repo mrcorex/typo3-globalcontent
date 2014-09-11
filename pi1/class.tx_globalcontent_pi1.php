@@ -44,12 +44,16 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 	 */
 	function main($content, $conf)	{
 		$fetchUrl = "";
+		$fetcher = "";
 		if (isset($this->cObj->data['tx_globalcontent_link'])) {
 			$fetchUrl = $this->cObj->data['tx_globalcontent_link'];
 		}
+		if (isset($this->cObj->data['tx_globalcontent_fetcher'])) {
+			$fetcher = $this->cObj->data['tx_globalcontent_fetcher'];
+		}
 
 		// Initialize fetcher and get content.
-		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl);
+		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl, $fetcher);
 		return $fetcher->getContent();
 	}
 

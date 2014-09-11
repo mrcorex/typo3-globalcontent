@@ -5,39 +5,34 @@
  */
 class tx_globalcontent_fetcher {
 
-	const extKey = "globalcontent";
-
 	private $url;
 	private $cacheKey;
 	private $cacheLifetime;
-	private $fetcherEngine;
+	private $fetcher;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param string $url
 	 */
-	public function __construct($url) {
+	public function __construct($url, $fetcher = "") {
 		global $TYPO3_CONF_VARS;
 		$this->url = $url;
+		$this->fetcher = $fetcher;
 		$this->cacheKey = md5($this->url);
 
 		// Set cache-lifetime for 12 hours.
 		$this->cacheLifetime = 60 * 60 * 12;
 
-		// Get configuraton for fetcher-engine.
-		$configuration = array();
-		if (isset($TYPO3_CONF_VARS["EXT"]["extConf"][tx_globalcontent_fetcher::extKey])) {
-			$configuration = unserialize($TYPO3_CONF_VARS["EXT"]["extConf"][tx_globalcontent_fetcher::extKey]);
+		// Get fetcher from configuration.
+		if ($this->fetcher == "") {
+			$this->fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
 		}
-		$this->fetcherEngine = "";
-		if (isset($configuration["fetcherEngine"])) {
-			$this->fetcherEngine = $configuration["fetcherEngine"];
-		}
+
 	}
 
 	/**
-	 * Get content based on fetcher-engine.
+	 * Get content based on fetcher.
 	 * 
 	 * @return string
 	 */
@@ -46,7 +41,7 @@ class tx_globalcontent_fetcher {
 			return "";
 		}
 
-		switch ($this->fetcherEngine) {
+		switch ($this->fetcher) {
 			case "passthrough":
 				return $this->getContentPassthrough();
 				break;
@@ -65,17 +60,22 @@ class tx_globalcontent_fetcher {
 
 		}
 
-		// Fallback to passthrough if fetcher-engine could not be found.
+		// Fallback to passthrough if fetcher could not be found.
 		return $this->getContentPassthrough();
 	}
 
 	/**
 	 * Get content (passthrough).
 	 * 
+	 * @param bool $useNoCache
 	 * @return string
 	 */
-	private function getContentPassthrough() {
-		return @file_get_contents($this->url . "&no_cache=1");
+	private function getContentPassthrough($useNoCache = false) {
+		$url = $this->url;
+		if ($useNoCache) {
+			$url .= "&no_cache=1";
+		}
+		return @file_get_contents($url);
 	}
 
 	/**
@@ -84,7 +84,7 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentCached() {
-		$cacheIdentifier = tx_globalcontent_fetcher::extKey . "_cache";
+		$cacheIdentifier = "globalcontent_cache";
 
 		// Initialize TYPO3 cache caching framework.
 		t3lib_cache::initializeCachingFramework();
@@ -103,7 +103,7 @@ class tx_globalcontent_fetcher {
 		$content = $cacheInstance->get($this->cacheKey);
 		if ($content === false) {
 			// Content not found. Get it from url and save to cache.
-			$content = $this->getContentPassthrough();
+			$content = $this->getContentPassthrough(true);
 			$cacheInstance->set($this->cacheKey, $content, array(), $this->cacheLifetime);
 		}
 
@@ -116,7 +116,18 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentJquery() {
-		return "Not implemented yet.";
+		static $isInitialized;
+
+		// Initialize if not previously initialized.
+		if (is_null($isInitialized)) {
+			$headerData = '<script src="' . t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/spin.min.js" type="text/javascript"></script>';
+			$headerData .= '<script src="' . t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/jquery.ajax_autoload.js" type="text/javascript"></script>';
+			$GLOBALS['TSFE']->additionalHeaderData["globalcontent"] = $headerData;
+			$isInitialized = true;
+		}
+
+		$content = "<a class=\"globalcontent-ajax-autoload\" href=\"" . $this->url . "&no_cache=1" . "\"></a>";
+		return $content;
 	}
 
 	/**

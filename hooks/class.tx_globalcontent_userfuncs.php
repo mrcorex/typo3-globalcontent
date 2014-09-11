@@ -22,6 +22,11 @@ class tx_globalcontent_userfuncs {
 		$elementId = intval($params['row']['uid']);
 		$url = $params['row']['tx_globalcontent_link'];
 		$originalUrl = $params['row']['tx_globalcontent_orgurl'];
+		$fetcher = trim($params['row']['tx_globalcontent_fetcher']);
+		if ($fetcher == "") {
+			// Get fetcher from configuration.
+			$fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
+		}
 
 		// Setup form.
         $pObj->additionalCode_pre['iframeElement'] = '
@@ -40,15 +45,32 @@ class tx_globalcontent_userfuncs {
 				}
 			</script>';
 		$content = '<table>';
-		$content .= '<tr><td>Indtast URL</td></tr>';
+
+		// Add select for fetcher.
+		$fetchers = $this->getListOfFetchers();
+		if (count($fetchers) > 0) {
+			$content .= "<tr><td>";
+			$content .= "Choose fetcher: </td></tr>";
+			$content .= "<tr><td><select name=\"data[" . $table . "][" . $elementId . "][tx_globalcontent_fetcher]\">";
+			foreach ($fetchers as $fetcherAlias => $fetcherName) {
+				$selected = $fetcherAlias == $fetcher ? " selected" : "";
+				$content .= "<option value=\"" . $fetcherAlias . "\"" . $selected . ">" . $fetcherName . "</option>";
+			}
+			$content .= "</select>";
+			$content .= "</td></tr>";
+		}
+
+		$content .= '<tr><td><br>Enter url: </td></tr>';
 		$content .= '<tr><td><input type="text" name="data[' . $table . '][' . $elementId . '][tx_globalcontent_orgurl]" id="tx_globalcontent_orgurl" size="60" onfocus="this.select();" value="' . $originalUrl . '"  /></td></tr>';
 		if (strlen(trim($originalUrl)) > 0) {
-			$content .= '<tr><td>Link til original side:</td></tr>';
+			$content .= '<tr><td>Link to previous page:</td></tr>';
 			$content .= '<tr><td><a href="' . $originalUrl . '" target="_blank">' . $originalUrl . '</a></td></tr>';
 		}
-		$content .= '<tr><td><input type="button" onclick="getUrl();" value="Browse"/>';
+		$content .= '<tr><td><br><input type="button" onclick="getUrl();" value="Browse"/>';
 		$content .= '</table>';
-		$content .= '<input type="hidden" name="data[' . $table . '][' . $elementId . '][tx_globalcontent_link]" id="tx_globalcontent_link" value="' . $url . '" />';
+		$content .= '<input type="hidden" name="data[' . $table . '][' . $elementId . '][tx_globalcontent_link]" id="tx_globalcontent_link" value="' . $url . '" /><br>';
+		$content .= "Preview:";
+		$content .= "<hr>";
 		$content .= '<div id="test" style="padding: 5px 5px 5px 5px;">' . $this->getPreview($url, $originalUrl) . '</div>';
 
 		return $content;
@@ -111,6 +133,20 @@ class tx_globalcontent_userfuncs {
 		}
 
 		return $url;
+	}
+
+	/**
+	 * Return list of fetchers.
+	 * 
+	 * @return array
+	 */
+	private function getListOfFetchers() {
+		return array(
+			"passthrough" => "Passthrough",
+			"cached" => "Cached",
+			"jquery" => "jQuery",
+			"varnish" => "Varnish"
+		);
 	}
 
 }

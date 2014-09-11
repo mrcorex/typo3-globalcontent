@@ -3,7 +3,6 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-
 $tempColumnsTtContent = Array (
 	'tx_globalcontent_link' => Array(
 		'exclude' => 0,
@@ -29,8 +28,8 @@ $tempColumnsTtContent = Array (
 					'size' => 30,
 			)
 	),
-	"tx_globalcontent" => Array (		
-		"exclude" => 0,		
+	"tx_globalcontent" => Array (
+		"exclude" => 0,
 		"label" => "LLL:EXT:" . $_EXTKEY . "/locallang.xml:pi_title",
 		"config" => Array(
 			"type" => "user",
@@ -40,14 +39,14 @@ $tempColumnsTtContent = Array (
 );
 
 if (version_compare(TYPO3_branch, '6.1', '<')) {
-	t3lib_div::loadTCA('tt_content');	
+	t3lib_div::loadTCA('tt_content');
 	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTtContent, 1);
 } else {
 	t3lib_extMgm::addTCAcolumns('tt_content', $tempColumnsTtContent);
 }
 
 if (version_compare(TYPO3_branch, '6.1', '<')) {
-	t3lib_div::loadTCA('tt_content');	
+	t3lib_div::loadTCA('tt_content');
 }
 
 t3lib_extMgm::addStaticFile($_EXTKEY, "static/", "Global Content Page types");

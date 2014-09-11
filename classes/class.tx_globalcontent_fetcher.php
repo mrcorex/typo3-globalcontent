@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Class to fetch content.
  */
@@ -9,6 +10,7 @@ class tx_globalcontent_fetcher {
 	private $cacheKey;
 	private $cacheLifetime;
 	private $fetcher;
+
 
 	/**
 	 * Constructor.
@@ -33,9 +35,10 @@ class tx_globalcontent_fetcher {
 
 	}
 
+
 	/**
 	 * Get content based on fetcher.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getContent() {
@@ -66,9 +69,10 @@ class tx_globalcontent_fetcher {
 		return $this->getContentPassthrough();
 	}
 
+
 	/**
 	 * Get content (passthrough).
-	 * 
+	 *
 	 * @param bool $useNoCache
 	 * @return string
 	 */
@@ -80,9 +84,10 @@ class tx_globalcontent_fetcher {
 		return @file_get_contents($url);
 	}
 
+
 	/**
 	 * Get content (cached).
-	 * 
+	 *
 	 * @return string
 	 */
 	private function getContentCached() {
@@ -112,6 +117,7 @@ class tx_globalcontent_fetcher {
 		return $content;
 	}
 
+
 	/**
 	 * Get content (jQuery).
 	 *
@@ -132,9 +138,10 @@ class tx_globalcontent_fetcher {
 		return $content;
 	}
 
+
 	/**
 	 * Get content (Varnish).
-	 * 
+	 *
 	 * @return string
 	 */
 	private function getContentVarnish() {

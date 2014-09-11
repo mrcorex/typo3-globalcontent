@@ -1,13 +1,15 @@
 <?php
 
+
 /**
  * tcemain-handler.
  */
 class tx_globalcontent_tcemain {
 
+
 	/**
 	 * Post-process field-array.
-	 * 
+	 *
 	 * @param string $status
 	 * @param string  $table
 	 * @param number $id

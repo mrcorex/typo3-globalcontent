@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * User function for entering url and browsing to choose element.
  */
@@ -7,6 +8,7 @@ class tx_globalcontent_userfuncs {
 
 	const PAGE_TYPE_SINGLE = 9002;
 	private $lang;
+
 
 	/**
 	 * Constructor.
@@ -16,9 +18,10 @@ class tx_globalcontent_userfuncs {
 		$this->lang->includeLLFile('EXT:globalcontent/locallang.xml');
 	}
 
+
 	/**
 	 * Main of user-function.
-	 * 
+	 *
 	 * @param array &$params
 	 * @param object &$pObj
 	 * @return string
@@ -46,7 +49,7 @@ class tx_globalcontent_userfuncs {
 					var elementId = ' . $elementId . ';
 					var url = prox + "&url=" + escape(exturl) + "&elementId=" + elementId;
 					window.open(url, \'popUpID' . t3lib_div::shortMD5(time()) . '\',\'width=1000,height=850,scrollbars=yes\');
-					return false;						
+					return false;
 				}
 			</script>';
 		$content = '<table>';
@@ -86,9 +89,10 @@ class tx_globalcontent_userfuncs {
 		return $content;
 	}
 
+
 	/**
 	 * Get preview from remote url.
-	 * 
+	 *
 	 * @param string $url
 	 * @param string $originalUrl
 	 * @return string
@@ -102,9 +106,10 @@ class tx_globalcontent_userfuncs {
 		return $result;
 	}
 
+
 	/**
 	 * Prepare url for preview, convert from old format to new format.
-	 * 
+	 *
 	 * @param string $url
 	 * @param string $originalUrl
 	 * @return string
@@ -146,9 +151,10 @@ class tx_globalcontent_userfuncs {
 		return $url;
 	}
 
+
 	/**
 	 * Return list of fetchers.
-	 * 
+	 *
 	 * @return array
 	 */
 	private function getListOfFetchers() {

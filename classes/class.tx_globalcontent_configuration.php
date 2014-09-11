@@ -1,13 +1,15 @@
 <?php
 
+
 /**
  * Class to handle extension-configuration.
  */
 class tx_globalcontent_configuration {
 
+
 	/**
 	 * Get setting from configuration.
-	 * 
+	 *
 	 * @param string $name
 	 * @param string $defaultValue Default value if $name is not set.
 	 * @return string

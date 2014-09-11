@@ -1,13 +1,15 @@
 <?php
 
+
 /**
  * Class to clear cache.
  */
 class tx_globalcontent_cacheproc {
 
+
 	/**
 	 * Clear cache.
-	 * 
+	 *
 	 * @param array $params
 	 * @param object &$pObj
 	 * @return void
@@ -38,9 +40,10 @@ class tx_globalcontent_cacheproc {
 		}
 	}
 
+
 	/**
 	 * Get list of element-ids based on page-id and CType.
-	 * 
+	 *
 	 * @param number $uid
 	 * @param string  $cType
 	 * @return array
@@ -56,9 +59,10 @@ class tx_globalcontent_cacheproc {
 		return $ids;
 	}
 
+
 	/**
 	 * Get list of hash'es based on element-id-list.
-	 * 
+	 *
 	 * @param array $ids
 	 * @return array
 	 */

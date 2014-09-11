@@ -1,14 +1,3 @@
-2012-10-30 Thor Solli	<thor@linkfactory.dk>
-
-	* Added check for mountpoint links
-
-
-2009-10-01 Thor Solli  <thor@linkfactory.dk>
-
-	* Added check for failed url decoding when parsing for links
-	* Added Cache resetting for FE
-
-
-2009-10-16 Thor Solli  <thor@linkfactory.dk>
+2014-09-11 Carsten Jørgensen <dev@corex.dk>
 
 	* Initial release

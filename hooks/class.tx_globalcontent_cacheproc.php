@@ -1,11 +1,9 @@
 <?php
 
-
 /**
  * Class to clear cache.
  */
 class tx_globalcontent_cacheproc {
-
 
 	/**
 	 * Clear cache.
@@ -40,7 +38,6 @@ class tx_globalcontent_cacheproc {
 		}
 	}
 
-
 	/**
 	 * Get list of element-ids based on page-id and CType.
 	 *
@@ -58,7 +55,6 @@ class tx_globalcontent_cacheproc {
 		}
 		return $ids;
 	}
-
 
 	/**
 	 * Get list of hash'es based on element-id-list.
@@ -79,5 +75,4 @@ class tx_globalcontent_cacheproc {
 		}
 		return $hashList;
 	}
-
 }

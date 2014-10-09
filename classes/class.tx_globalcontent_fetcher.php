@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Class to fetch content.
  */
@@ -10,7 +9,6 @@ class tx_globalcontent_fetcher {
 	private $cacheKey;
 	private $cacheLifetime;
 	private $fetcher;
-
 
 	/**
 	 * Constructor.
@@ -34,7 +32,6 @@ class tx_globalcontent_fetcher {
 		}
 
 	}
-
 
 	/**
 	 * Get content based on fetcher.
@@ -69,7 +66,6 @@ class tx_globalcontent_fetcher {
 		return $this->getContentPassthrough();
 	}
 
-
 	/**
 	 * Get content (passthrough).
 	 *
@@ -83,7 +79,6 @@ class tx_globalcontent_fetcher {
 		}
 		return @file_get_contents($url);
 	}
-
 
 	/**
 	 * Get content (cached).
@@ -117,7 +112,6 @@ class tx_globalcontent_fetcher {
 		return $content;
 	}
 
-
 	/**
 	 * Get content (jQuery).
 	 *
@@ -138,7 +132,6 @@ class tx_globalcontent_fetcher {
 		return $content;
 	}
 
-
 	/**
 	 * Get content (Varnish).
 	 *
@@ -147,5 +140,4 @@ class tx_globalcontent_fetcher {
 	private function getContentVarnish() {
 		return "<esi src=\"" . $this->url . "\">";
 	}
-
 }

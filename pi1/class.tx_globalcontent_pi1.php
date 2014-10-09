@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Plugin for fetching content.
  */
@@ -9,7 +8,6 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 	var $scriptRelPath = 'pi1/class.tx_globalcontent_pi1.php';
 	var $extKey = 'globalcontent';
 	var $pi_checkCHash = true;
-
 
 	/**
 	 * The main method of the PlugIns
@@ -32,7 +30,6 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl, $fetcher);
 		return $fetcher->getContent();
 	}
-
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/globalcontent/pi1/class.tx_globalcontent_pi1.php'])	{

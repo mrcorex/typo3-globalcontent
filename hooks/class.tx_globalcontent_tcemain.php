@@ -1,11 +1,9 @@
 <?php
 
-
 /**
  * tcemain-handler.
  */
 class tx_globalcontent_tcemain {
-
 
 	/**
 	 * Post-process field-array.
@@ -29,5 +27,4 @@ class tx_globalcontent_tcemain {
 		}
 
 	}
-
 }

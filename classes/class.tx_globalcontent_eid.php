@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Class to handle outside requests (eID).
  *
@@ -10,7 +9,6 @@ class tx_globalcontent_eid {
 
 	const PAGE_TYPE_LIST = 9001;
 	const PAGE_TYPE_SINGLE = 9002;
-
 
 	/**
 	 * Main.
@@ -47,7 +45,6 @@ class tx_globalcontent_eid {
 		}
 	}
 
-
 	/**
 	 * Loads remote page based on type, for choosing element.
 	 *
@@ -67,7 +64,6 @@ class tx_globalcontent_eid {
 		$content = file_get_contents($url);
 		print($content);
 	}
-
 
 	/**
 	 * Fetch single element from remote page.
@@ -89,8 +85,8 @@ class tx_globalcontent_eid {
 
 		// Build url to store.
 		$parameters = array(
-				"type" => tx_globalcontent_eid::PAGE_TYPE_SINGLE,
-				"cid" => $cid
+			"type" => tx_globalcontent_eid::PAGE_TYPE_SINGLE,
+			"cid" => $cid
 		);
 		$url = $this->buildUrl($url, $parameters);
 
@@ -111,7 +107,6 @@ class tx_globalcontent_eid {
 		print("</script>\n");
 	}
 
-
 	/**
 	 * Show element.
 	 *
@@ -123,7 +118,6 @@ class tx_globalcontent_eid {
 		print($content);
 	}
 
-
 	/**
 	 * Return site-url
 	 *
@@ -132,7 +126,6 @@ class tx_globalcontent_eid {
 	private function getSiteUrl() {
 		return t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 	}
-
 
 	/**
 	 * Build url.
@@ -155,7 +148,6 @@ class tx_globalcontent_eid {
 		}
 		return $url;
 	}
-
 }
 
 $eid = t3lib_div::makeInstance("tx_globalcontent_eid");

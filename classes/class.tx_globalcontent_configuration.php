@@ -1,11 +1,9 @@
 <?php
 
-
 /**
  * Class to handle extension-configuration.
  */
 class tx_globalcontent_configuration {
-
 
 	/**
 	 * Get setting from configuration.
@@ -25,5 +23,4 @@ class tx_globalcontent_configuration {
 		}
 		return $result;
 	}
-
 }

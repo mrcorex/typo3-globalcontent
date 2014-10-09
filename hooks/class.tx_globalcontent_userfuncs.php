@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * User function for entering url and browsing to choose element.
  */
@@ -9,7 +8,6 @@ class tx_globalcontent_userfuncs {
 	const PAGE_TYPE_SINGLE = 9002;
 	private $lang;
 
-
 	/**
 	 * Constructor.
 	 */
@@ -17,7 +15,6 @@ class tx_globalcontent_userfuncs {
 		$this->lang = $GLOBALS["LANG"];
 		$this->lang->includeLLFile('EXT:globalcontent/locallang.xml');
 	}
-
 
 	/**
 	 * Main of user-function.
@@ -89,7 +86,6 @@ class tx_globalcontent_userfuncs {
 		return $content;
 	}
 
-
 	/**
 	 * Get preview from remote url.
 	 *
@@ -105,7 +101,6 @@ class tx_globalcontent_userfuncs {
 		$result = file_get_contents($showUrl);
 		return $result;
 	}
-
 
 	/**
 	 * Prepare url for preview, convert from old format to new format.
@@ -151,7 +146,6 @@ class tx_globalcontent_userfuncs {
 		return $url;
 	}
 
-
 	/**
 	 * Return list of fetchers.
 	 *
@@ -166,5 +160,4 @@ class tx_globalcontent_userfuncs {
 			"varnish" => $this->lang->getLL("fetcherVarnish")
 		);
 	}
-
 }

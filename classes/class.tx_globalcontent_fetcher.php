@@ -96,8 +96,8 @@ class tx_globalcontent_fetcher {
 			$cacheInstance = $GLOBALS['typo3CacheFactory']->create(
 					$cacheIdentifier,
 					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['frontend'],
-					array(),
-					array()
+					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['backend'],
+					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['options']
 			);
 		}
 

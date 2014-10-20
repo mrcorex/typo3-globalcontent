@@ -15,9 +15,9 @@ if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['globalc
 // Set cache to use string for frontend.
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_hash'])) {
 	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['globalcontent_cache'] = array(
-			'frontend' => 't3lib_cache_frontend_StringFrontend',
-			'backend' => array(),
-			'options' => array()
+		'frontend' => 't3lib_cache_frontend_VariableFrontend',
+		'backend' => 't3lib_cache_backend_DbBackend',
+		'options' => array()
 	);
 }
 

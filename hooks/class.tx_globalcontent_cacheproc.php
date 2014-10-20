@@ -13,6 +13,12 @@ class tx_globalcontent_cacheproc {
 	 * @return void
 	 */
 	public function clearCache($params, &$pObj) {
+		$fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
+		if ($fetcher != "cached") {
+			// Do not continue. Only TYPO3 Caching Framework needs to be cleaned.
+			return;
+		}
+
 		$paramUid = $params["uid"];
 
 		$table = isset($params["table"]) ? $params["table"] : "";
@@ -30,10 +36,11 @@ class tx_globalcontent_cacheproc {
 		}
 
 		// Clear items from cache.
+		$typo3CacheInstance = tx_globalcontent_cache::getTYPO3CacheInstance();
 		$hashList = $this->getListOfHashesByElementIds($ids);
 		if (count($hashList) > 0) {
 			foreach ($hashList as $hash) {
-				$GLOBALS["TYPO3_DB"]->exec_DELETEquery("cf_globalcontent_cache", "identifier = '" . $hash . "'");
+				$typo3CacheInstance->remove($hash);
 			}
 		}
 	}

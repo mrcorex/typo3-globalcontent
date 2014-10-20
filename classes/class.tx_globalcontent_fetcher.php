@@ -86,20 +86,7 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentCached() {
-		$cacheIdentifier = "globalcontent_cache";
-
-		// Initialize TYPO3 cache caching framework.
-		t3lib_cache::initializeCachingFramework();
-		try {
-			$cacheInstance = $GLOBALS['typo3CacheManager']->getCache($cacheIdentifier);
-		} catch (t3lib_cache_exception_NoSuchCache $e) {
-			$cacheInstance = $GLOBALS['typo3CacheFactory']->create(
-					$cacheIdentifier,
-					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['frontend'],
-					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['backend'],
-					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['options']
-			);
-		}
+		$cacheInstance = tx_globalcontent_cache::getTYPO3CacheInstance();
 
 		// Get content from cache.
 		$content = $cacheInstance->get($this->cacheKey);

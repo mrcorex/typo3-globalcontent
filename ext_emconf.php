@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Global Content',
 	'description' => '',
 	'category' => 'plugin',
-	'author' => 'Carsten Jørgensen',
+	'author' => 'Carsten Joergensen',
 	'author_email' => 'dev@corex.dk',
 	'shy' => '',
 	'dependencies' => '',
@@ -29,9 +29,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '2.0.1',
+	'version' => '2.0.2',
 	'constraints' => array(
 		'depends' => array(
+			'typo3' => '4.7.0-6.2.99',
 		),
 		'conflicts' => array(
 		),

@@ -115,7 +115,7 @@ class tx_globalcontent_fetcher {
 			$isInitialized = true;
 		}
 
-		$content = "<a class=\"globalcontent-ajax-autoload\" href=\"" . $this->url . "&no_cache=1" . "\"></a>";
+		$content = "<a class=\"globalcontent-ajax-autoload\" href=\"" . $this->url . "\"></a>";
 		return $content;
 	}
 

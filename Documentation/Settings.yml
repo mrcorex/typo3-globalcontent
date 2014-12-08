@@ -1,0 +1,32 @@
+# This is the project specific Settings.yml file.
+# Place Sphinx specific build information here.
+# Settings given here will replace the settings of 'conf.py'.
+
+---
+conf.py:
+  extensions: 
+    - sphinx.ext.intersphinx
+    - sphinx.ext.todo
+    - sphinx.ext.ifconfig
+    - sphinx.ext.graphviz
+  copyright: 2011-2014
+  project: 'Global Content: Share global content between installations'
+  version: 2.1.0
+  release: 2.1.0
+  latex_documents:
+  - - Index
+    - globalcontent.tex
+    - 'Global Content: Share global content between installations'
+    - Carsten Jørgensen
+    - manual
+  latex_elements:
+    papersize: a4paper
+    pointsize: 10pt
+    preamble: \usepackage{typo3}
+  latex_use_parts: True
+  latex_show_pagerefs: True
+  intersphinx_mapping:
+    t3tsref:
+    - http://docs.typo3.org/typo3cms/TyposcriptReference/
+    - null
+...

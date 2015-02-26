@@ -12,6 +12,8 @@
 			<label index="fetcherCached">Cached - use caching framework</label>
 			<label index="fetcherjQuery">jQuery - loading with sliding and fading</label>
 			<label index="fetcherVarnish">Varnish - cached controlled by Varnish</label>
+			<label index="pi_title">Global content</label>
+			<label index="pi_plus_wiz_description">Global content for remote sites which have Global Content installed.</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index="pi_title">Globalt indhold</label>
@@ -24,6 +26,8 @@
 			<label index="fetcherCached">Cached - brug caching framework</label>
 			<label index="fetcherjQuery">jQuery - indlæsning med sliding og fading</label>
 			<label index="fetcherVarnish">Varnish - cache styret af Varnish</label>
+			<label index="pi_title">Global content</label>
+			<label index="pi_plus_wiz_description">Global content for remote sider som har Global Content installeret.</label>
 		</languageKey>
 	</data>
 	<meta type="array">

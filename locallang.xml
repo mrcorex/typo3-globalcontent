@@ -14,6 +14,7 @@
 			<label index="fetcherVarnish">Varnish - cached controlled by Varnish</label>
 			<label index="pi_title">Global content</label>
 			<label index="pi_plus_wiz_description">Global content for remote sites which have Global Content installed.</label>
+			<label index="noContentUid">Element not saved. Not possible to show form.</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index="pi_title">Globalt indhold</label>
@@ -28,6 +29,7 @@
 			<label index="fetcherVarnish">Varnish - cache styret af Varnish</label>
 			<label index="pi_title">Global content</label>
 			<label index="pi_plus_wiz_description">Global content for remote sider som har Global Content installeret.</label>
+			<label index="noContentUid">Element er ikke gemt. Det er ikke muligt at vise form.</label>
 		</languageKey>
 	</data>
 	<meta type="array">

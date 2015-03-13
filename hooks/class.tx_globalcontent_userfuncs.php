@@ -25,6 +25,13 @@ class tx_globalcontent_userfuncs {
 	 */
 	public function main(&$params, &$pObj) {
 
+		// Check if plugin is saved, otherwise it is not possible to show form.
+		$contentUid = isset($params['row']['uid']) ? intval($params['row']['uid']) : 0;
+		if ($contentUid == 0) {
+			$content .= '<p><strong>' . $this->lang->getLL("noContentUid") . '</strong></p>';
+			return $content;
+		}
+
 		// Extract data from row.
 		$row = $params['row'];
 		$table = $params["table"];

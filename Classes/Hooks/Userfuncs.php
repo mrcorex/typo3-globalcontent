@@ -1,9 +1,11 @@
 <?php
 
+namespace Linkfactory\Globalcontent\Hooks;
+
 /**
  * User function for entering url and browsing to choose element.
  */
-class tx_globalcontent_userfuncs {
+class Userfuncs {
 
 	const PAGE_TYPE_SINGLE = 9002;
 	private $lang;
@@ -140,7 +142,7 @@ class tx_globalcontent_userfuncs {
 			$cid = isset($parameters["elementId"]) ? intval($parameters["elementId"]) : 0;
 			$url = $originalUrl;
 			$url .= strpos($url, "?") > 0 ? "&" : "?";
-			$url .= "type=" . tx_globalcontent_userfuncs::PAGE_TYPE_SINGLE;
+			$url .= "type=" . self::PAGE_TYPE_SINGLE;
 			$url .= "&cid=" . $cid;
 		}
 

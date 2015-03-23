@@ -1,9 +1,11 @@
 <?php
 
+namespace Linkfactory\Globalcontent;
+
 /**
  * Class to handle extension-configuration.
  */
-class tx_globalcontent_configuration {
+class Configuration {
 
 	/**
 	 * Get setting from configuration.

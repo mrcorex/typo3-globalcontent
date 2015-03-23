@@ -1,6 +1,8 @@
 <?php
 
-class tx_globalcontent_cache {
+namespace Linkfactory\Globalcontent;
+
+class Cache {
 
 	/**
 	 * Get instance of TYPO3 Caching Framework.

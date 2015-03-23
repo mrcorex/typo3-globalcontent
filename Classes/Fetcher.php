@@ -1,9 +1,11 @@
 <?php
 
+namespace Linkfactory\Globalcontent;
+
 /**
  * Class to fetch content.
  */
-class tx_globalcontent_fetcher {
+class Fetcher {
 
 	private $url;
 	private $cacheKey;
@@ -19,7 +21,8 @@ class tx_globalcontent_fetcher {
 	 */
 	public function __construct($url, $fetcher = "") {
 		global $TYPO3_CONF_VARS;
-		$this->url = $this->checkAndConvertOldUrlFormat($url);
+
+		$this->url = $url;
 		$this->fetcher = $fetcher;
 		$this->cacheKey = md5($this->url);
 
@@ -28,9 +31,8 @@ class tx_globalcontent_fetcher {
 
 		// Get fetcher from configuration.
 		if ($this->fetcher == "") {
-			$this->fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
+			$this->fetcher = \Linkfactory\Globalcontent\Configuration::getFromConfiguration("fetcher", "passthrough");
 		}
-
 	}
 
 	/**
@@ -86,7 +88,7 @@ class tx_globalcontent_fetcher {
 	 * @return string
 	 */
 	private function getContentCached() {
-		$cacheInstance = tx_globalcontent_cache::getTYPO3CacheInstance();
+		$cacheInstance = \Linkfactory\Globalcontent\Cache::getTYPO3CacheInstance();
 
 		// Get content from cache.
 		$content = $cacheInstance->get($this->cacheKey);
@@ -117,42 +119,6 @@ class tx_globalcontent_fetcher {
 
 		$content = "<a class=\"globalcontent-ajax-autoload\" href=\"" . $this->url . "\"></a>";
 		return $content;
-	}
-
-	/**
-	 * Check and convert url, if in old format.
-	 * 
-	 * @param string $url
-	 * @return string
-	 */
-	private function checkAndConvertOldUrlFormat($url) {
-
-		// Extract query parts.
-		$urlParts = parse_url($url);
-		$query = parse_url($url, PHP_URL_QUERY);
-		$parts = array();
-		if (!is_null($query)) {
-			parse_str($query, $parts);
-		}
-
-		// Convert to new globalcontent format, if needed.
-		if (isset($parts["elementId"])) {
-			$parts["type"] = 9002;
-			$parts["cid"] = $parts["elementId"];
-
-			// Unsetting un-needed parameters.
-			unset($parts["eID"]);
-			unset($parts["elementId"]);
-		}
-		$urlParts["query"] = http_build_query($parts);
-
-		// Build url.
-		$url = $urlParts["scheme"] . "://" . $urlParts["host"] . "/";
-		if ($urlParts["query"] != "") {
-			$url .= "?" . $urlParts["query"];
-		}
-
-		return $url;
 	}
 
 	/**

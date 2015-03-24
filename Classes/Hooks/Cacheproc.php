@@ -1,9 +1,11 @@
 <?php
 
+namespace Linkfactory\Globalcontent\Hooks;
+
 /**
  * Class to clear cache.
  */
-class tx_globalcontent_cacheproc {
+class Cacheproc {
 
 	/**
 	 * Clear cache.
@@ -13,7 +15,7 @@ class tx_globalcontent_cacheproc {
 	 * @return void
 	 */
 	public function clearCache($params, &$pObj) {
-		$fetcher = tx_globalcontent_configuration::getFromConfiguration("fetcher", "passthrough");
+		$fetcher = \Linkfactory\Globalcontent\Configuration::getFromConfiguration("fetcher", "passthrough");
 		if ($fetcher != "cached") {
 			// Do not continue. Only TYPO3 Caching Framework needs to be cleaned.
 			return;
@@ -36,7 +38,7 @@ class tx_globalcontent_cacheproc {
 		}
 
 		// Clear items from cache.
-		$typo3CacheInstance = tx_globalcontent_cache::getTYPO3CacheInstance();
+		$typo3CacheInstance = \Linkfactory\Globalcontent\Cache::getTYPO3CacheInstance();
 		$hashList = $this->getListOfHashesByElementIds($ids);
 		if (count($hashList) > 0) {
 			foreach ($hashList as $hash) {

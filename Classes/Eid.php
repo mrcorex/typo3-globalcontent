@@ -1,11 +1,13 @@
 <?php
 
+namespace Linkfactory\Globalcontent;
+
 /**
  * Class to handle outside requests (eID).
  *
  * Instantiated at the bottom of this file.
  */
-class tx_globalcontent_eid {
+class Eid {
 
 	const PAGE_TYPE_LIST = 9001;
 	const PAGE_TYPE_SINGLE = 9002;
@@ -56,7 +58,7 @@ class tx_globalcontent_eid {
 		// Build url.
 		$fetchUrl = $url;
 		$url .= strpos($url, "?") > 0 ? "&" : "?";
-		$url .= "type=" . tx_globalcontent_eid::PAGE_TYPE_LIST;
+		$url .= "type=" . self::PAGE_TYPE_LIST;
 		$url .= "&no_cache=1";
 		$url .= "&callbackUrl=" . urlencode($this->getSiteUrl() . "?eID=globalcontent&mode=fetchElement");
 		$url .= "&fetchUrl=" . urlencode($fetchUrl);
@@ -77,7 +79,7 @@ class tx_globalcontent_eid {
 
 		// Build url to fetch element.
 		$parameters = array(
-			"type" => tx_globalcontent_eid::PAGE_TYPE_SINGLE,
+			"type" => self::PAGE_TYPE_SINGLE,
 			"no_cache" => 1,
 			"cid" => $cid
 		);
@@ -85,7 +87,7 @@ class tx_globalcontent_eid {
 
 		// Build url to store.
 		$parameters = array(
-			"type" => tx_globalcontent_eid::PAGE_TYPE_SINGLE,
+			"type" => self::PAGE_TYPE_SINGLE,
 			"cid" => $cid
 		);
 		$url = $this->buildUrl($url, $parameters);
@@ -149,6 +151,3 @@ class tx_globalcontent_eid {
 		return $url;
 	}
 }
-
-$eid = t3lib_div::makeInstance("tx_globalcontent_eid");
-$eid->main();

@@ -33,7 +33,7 @@ $tempColumnsTtContent = Array (
 		"label" => "LLL:EXT:" . $_EXTKEY . "/locallang.xml:pi_title",
 		"config" => Array(
 			"type" => "user",
-			"userFunc" => 'tx_globalcontent_userfuncs->main',
+			"userFunc" => '\\Linkfactory\\Globalcontent\\Hooks\\Userfuncs->main',
 		),
 	),
 );
@@ -56,5 +56,5 @@ t3lib_extMgm::addPlugin(array('LLL:EXT:globalcontent/locallang_db.xml:tt_content
 
 // Add plugin to list of plugins in backend (when adding plugin).
 if (TYPO3_MODE == 'BE')   {
-	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_globalcontent_wizicon'] = t3lib_extMgm::extPath($_EXTKEY) . 'hooks/class.tx_globalcontent_wizicon.php';
+	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Linkfactory\\Globalcontent\\Hooks\Wizicon'] = t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Wizicon.php';
 }

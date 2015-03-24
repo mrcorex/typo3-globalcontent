@@ -27,11 +27,8 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 		}
 
 		// Initialize fetcher and get content.
-		$fetcher = t3lib_div::makeInstance("tx_globalcontent_fetcher", $fetchUrl, $fetcher);
+		$fetcher = t3lib_div::makeInstance("\\Linkfactory\\Globalcontent\\Fetcher", $fetchUrl, $fetcher);
 		return $fetcher->getContent();
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/globalcontent/pi1/class.tx_globalcontent_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/globalcontent/pi1/class.tx_globalcontent_pi1.php']);
-}

@@ -1,9 +1,11 @@
 <?php
 
+namespace Linkfactory\Globalcontent\Hooks;
+
 /**
  * Class that adds the wizard icon.
  */
-class tx_globalcontent_wizicon {
+class Wizicon {
 
 	/**
 	 * Adds the newloginbox wizard icon

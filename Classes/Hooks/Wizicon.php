@@ -18,7 +18,7 @@ class Wizicon {
 
 		$ll = $this->includeLocalLang();
 		$wizardItems['plugins_tx_globalcontent_pi1'] = array(
-			'icon' => t3lib_extMgm::extRelPath('globalcontent') . 'res/icons/network-server.png',
+			'icon' => \t3lib_extMgm::extRelPath('globalcontent') . 'res/icons/network-server.png',
 			'title' => $LANG->getLLL('pi_title', $ll),
 			'description' => $LANG->getLLL('pi_plus_wiz_description', $ll),
 			'params' => '&defVals[tt_content][CType]=globalcontent_pi1'
@@ -40,8 +40,8 @@ class Wizicon {
 				$GLOBALS['LANG']->lang
 			);
 		} else {
-			$llFile = t3lib_extMgm::extPath('globalcontent') . 'locallang.xml';
-			$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+			$llFile = \t3lib_extMgm::extPath('globalcontent') . 'locallang.xml';
+			$LOCAL_LANG = \t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
 		}
 		return $LOCAL_LANG;
 	}

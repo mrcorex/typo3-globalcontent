@@ -111,8 +111,8 @@ class Fetcher {
 
 		// Initialize if not previously initialized.
 		if (is_null($isInitialized)) {
-			$headerData = '<script src="' . t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/spin.min.js" type="text/javascript"></script>';
-			$headerData .= '<script src="' . t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/jquery.ajax_autoload.js" type="text/javascript"></script>';
+			$headerData = '<script src="' . \t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/spin.min.js" type="text/javascript"></script>';
+			$headerData .= '<script src="' . \t3lib_extMgm::siteRelPath("globalcontent") . 'pi1/res/jquery.ajax_autoload.js" type="text/javascript"></script>';
 			$GLOBALS['TSFE']->additionalHeaderData["globalcontent"] = $headerData;
 			$isInitialized = true;
 		}

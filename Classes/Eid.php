@@ -22,21 +22,21 @@ class Eid {
 
 			// Show remote page to choose element.
 			case "chooseElement":
-				$url = t3lib_div::_GET("url");
+				$url = \t3lib_div::_GET("url");
 				$this->chooseElement($url);
 				break;
 
 			// Receive chosen element-id.
 			case "fetchElement":
-				$fetchUrl = trim(t3lib_div::_POST("fetchUrl"));
-				$cid = intval(t3lib_div::_POST("cid"));
-				$elementId = intval(t3lib_div::_POST("elementId"));
+				$fetchUrl = trim(\t3lib_div::_POST("fetchUrl"));
+				$cid = intval(\t3lib_div::_POST("cid"));
+				$elementId = intval(\t3lib_div::_POST("elementId"));
 				$this->fetchElement($fetchUrl, $cid, $elementId);
 				break;
 
 			// Show element for preview in backend.
 			case "showElement":
-				$url = trim(t3lib_div::_GET("url"));
+				$url = trim(\t3lib_div::_GET("url"));
 				$this->showElement($url);
 				break;
 
@@ -126,7 +126,7 @@ class Eid {
 	 * @return string.
 	 */
 	private function getSiteUrl() {
-		return t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		return \t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 	}
 
 	/**

@@ -27,7 +27,7 @@ class tx_globalcontent_pi1 extends tslib_pibase {
 		}
 
 		// Initialize fetcher and get content.
-		$fetcher = t3lib_div::makeInstance("\\Linkfactory\\Globalcontent\\Fetcher", $fetchUrl, $fetcher);
+		$fetcher = \t3lib_div::makeInstance("\\Linkfactory\\Globalcontent\\Fetcher", $fetchUrl, $fetcher);
 		return $fetcher->getContent();
 	}
 }

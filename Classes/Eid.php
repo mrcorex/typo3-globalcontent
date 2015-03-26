@@ -18,7 +18,7 @@ class Eid {
 	 * @return void
 	 */
 	public function main() {
-		switch (t3lib_div::_GET("mode")) {
+		switch (\t3lib_div::_GET("mode")) {
 
 			// Show remote page to choose element.
 			case "chooseElement":

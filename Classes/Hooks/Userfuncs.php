@@ -26,6 +26,7 @@ class Userfuncs {
 	 * @return string
 	 */
 	public function main(&$params, &$pObj) {
+        $content = "";
 
 		// Check if plugin is saved, otherwise it is not possible to show form.
 		$contentUid = isset($params['row']['uid']) ? intval($params['row']['uid']) : 0;
@@ -46,7 +47,7 @@ class Userfuncs {
 		$pObj->additionalCode_pre['iframeElement'] = '
 			<script type="text/javascript">
 				function getUrl() {
-					var prox = "' . \t3lib_div::getIndpEnv('TYPO3_SITE_URL') . '?eID=globalcontent&mode=chooseElement";
+					var prox = "' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . '?eID=globalcontent&mode=chooseElement";
 					var exturl = document.getElementById("tx_globalcontent_orgurl").value;
 					if (exturl.trim() == "") {
 						alert("You must specify an AU-url.");
@@ -54,7 +55,7 @@ class Userfuncs {
 					}
 					var elementId = ' . $elementId . ';
 					var url = prox + "&url=" + escape(exturl) + "&elementId=" + elementId;
-					window.open(url, \'popUpID' . \t3lib_div::shortMD5(time()) . '\',\'width=1000,height=850,scrollbars=yes\');
+					window.open(url, \'popUpID' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5(time()) . '\',\'width=1000,height=850,scrollbars=yes\');
 					return false;
 				}
 			</script>';
@@ -103,7 +104,7 @@ class Userfuncs {
 	 * @return string
 	 */
 	private function getPreview($url, $originalUrl) {
-		$showUrl = \t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		$showUrl = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 		$showUrl .= "?eID=globalcontent";
 		$showUrl .= "&mode=showElement";
 		$showUrl .= "&url=" . urlencode($this->prepareUrl($url, $originalUrl));

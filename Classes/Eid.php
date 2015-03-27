@@ -18,25 +18,25 @@ class Eid {
 	 * @return void
 	 */
 	public function main() {
-		switch (\t3lib_div::_GET("mode")) {
+		switch (\TYPO3\CMS\Core\Utility\GeneralUtility::_GET("mode")) {
 
 			// Show remote page to choose element.
 			case "chooseElement":
-				$url = \t3lib_div::_GET("url");
+				$url = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET("url");
 				$this->chooseElement($url);
 				break;
 
 			// Receive chosen element-id.
 			case "fetchElement":
-				$fetchUrl = trim(\t3lib_div::_POST("fetchUrl"));
-				$cid = intval(\t3lib_div::_POST("cid"));
-				$elementId = intval(\t3lib_div::_POST("elementId"));
+				$fetchUrl = trim(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST("fetchUrl"));
+				$cid = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST("cid"));
+				$elementId = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST("elementId"));
 				$this->fetchElement($fetchUrl, $cid, $elementId);
 				break;
 
 			// Show element for preview in backend.
 			case "showElement":
-				$url = trim(\t3lib_div::_GET("url"));
+				$url = trim(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET("url"));
 				$this->showElement($url);
 				break;
 
@@ -126,7 +126,7 @@ class Eid {
 	 * @return string.
 	 */
 	private function getSiteUrl() {
-		return \t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 	}
 
 	/**

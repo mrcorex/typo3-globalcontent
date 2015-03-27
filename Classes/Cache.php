@@ -13,10 +13,10 @@ class Cache {
 		$cacheIdentifier = "globalcontent_cache";
 
 		// Initialize TYPO3 cache caching framework.
-		\t3lib_cache::initializeCachingFramework();
+        \TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
 		try {
 			$cacheInstance = $GLOBALS['typo3CacheManager']->getCache($cacheIdentifier);
-		} catch (\t3lib_cache_exception_NoSuchCache $e) {
+		} catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
 			$cacheInstance = $GLOBALS['typo3CacheFactory']->create(
 					$cacheIdentifier,
 					$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$cacheIdentifier]['frontend'],

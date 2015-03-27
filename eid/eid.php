@@ -1,4 +1,4 @@
 <?php
 
-$eid = \t3lib_div::makeInstance("\\Linkfactory\\Globalcontent\\Eid");
+$eid = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("\\Linkfactory\\Globalcontent\\Eid");
 $eid->main();

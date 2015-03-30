@@ -101,3 +101,15 @@ Fetcher
 * jQuery - If remote is slow, your will see a spinner but most important, it will not slow down load of page.
 
 * Varnish - This option assume that you have Varnish in your installation.
+
+
+Pitfalls
+--------
+If you wish to use one of the methods merging the content before it is sent to the browser (thats is: passthrough, caching or varnish),
+you should make sure that the URL's to images and other ressources are absolute.
+It this is not the case the ressources will be interpreted to relative to the site hosting the globalcontent element and not the site where the images is really available.
+You can setup absolute URL's this way: (given the proper URL us in constant plugin.site_config.baseUrl)
+
+.. code-block:: typoscript
+
+   globalContentSingle.config.absRefPrefix = {$plugin.site_config.baseUrl}
